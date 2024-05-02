@@ -4,15 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
+    <title>Signup</title>
 </head>
 <body>
-    <h1>signup form</h1>
-    <p>login and signup</p>
-    <input type="email" placeholder="email address">
-    <input type="password" placeholder="password" >
-    <input type="password" placeholder="confirm password">
-    <a href="#">forgot password ?</a>
-    <button>signup</button>
+    <h1>Signup Form</h1>
+    <p>Login and Signup</p>
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="password" id="password" placeholder="Password">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+    <a href="#">Forgot Password?</a>
+    <button id="signupBtn">Signup</button>
+
+    <script>
+        const signupBtn = document.getElementById('signupBtn');
+        signupBtn.addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            const response = await fetch('https://empman.onrender.com/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                alert('Signup successful');
+            } else {
+                const data = await response.json();
+                alert(data.msg);
+            }
+        });
+    </script>
 </body>
 </html>

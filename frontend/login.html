@@ -3,14 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>login form</h1>
-    <p>login and signup</p>
-    <input type="email" placeholder="email address">
-    <input type="password" placeholder="password" >
-    <button>signup</button>
-    <p>not a member ?<a href="signup.html"> sign up now</a> </p>
+    <h1>Login Form</h1>
+    <p>Login and Signup</p>
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="password" id="password" placeholder="Password">
+    <button id="loginBtn">Login</button>
+    <p>Not a member? <a href="signup.html">Sign up now</a></p>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const response = await fetch('https://empman.onrender.com/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                alert('Login successful');
+            } else {
+                const data = await response.json();
+                alert(data.msg);
+            }
+        });
+    </script>
 </body>
 </html>
