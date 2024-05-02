@@ -1,1 +1,44 @@
-dengutha
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Management System</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Employee Management System</h1>
+<button id="addEmployeeBtn">Add Employee</button>
+<div id="employeeFormContainer" style="display: none;">
+    <form id="employeeForm">
+        <input type="text" id="firstName" placeholder="First Name" required>
+        <input type="text" id="lastName" placeholder="Last Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <select id="department" required>
+            <option value="" disabled selected>Select Department</option>
+            <option value="Tech">Tech</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Operations">Operations</option>
+        </select>
+        <input type="number" id="salary" placeholder="Salary" required>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<table id="employeeTable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="employeeTableBody"></tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
